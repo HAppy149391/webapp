@@ -38,7 +38,7 @@ docker build --tag webapp .
 2. Run a Docker container with the built image:
 
 ```bash
-docker run --name webapp --rm --port 8080:8080 webapp
+docker run --name webapp --rm -p 8080:8080 webapp
 ```
 
 3. Access the web application at http://localhost:8080 in a web browser.
