@@ -34,7 +34,7 @@ jobs:
         with:
           registry: harikishoracr01.azurecr.io
           username: harikishoracr01
-          password: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
+          password: ${{ secrets.WEBAPPSECRET }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
