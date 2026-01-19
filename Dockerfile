@@ -12,19 +12,19 @@ COPY src ./src
 RUN mvn clean package
 
 # Runtime stage
-FROM openjdk:17-jdk
+FROM eclipse-temurin:17-jre-jammy
 
 # Set the working directory
 WORKDIR /app
 
 # Define an argument to accept the JAR file name
-ARG JAR_FILE=/build/target/webapp-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=webapp-0.0.1-SNAPSHOT.jar
 
-# Copy the packaged Spring Boot JAR file from the build stage to the working directory
-COPY --from=build ${JAR_FILE} /app/app.jar
+# Copy jar from build stage
+COPY --from=build /build/target/${JAR_FILE} app.jar
 
-# Expose the application's port
+# Expose application port
 EXPOSE 8080
 
-# Start the Spring Boot application
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Start Spring Boot application
+ENTRYPOINT ["java", "-jar", "app.jar"]
